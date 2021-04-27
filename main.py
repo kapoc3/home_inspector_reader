@@ -1,8 +1,5 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
+from app.logic.SpeedTest import SpeedTestLogic
+from app.utils.Converter import Converter
 
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
@@ -11,6 +8,9 @@ def print_hi(name):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    size, label = Converter.format_bytes(SpeedTestLogic.get_upload_speed())
+    print("size {0}, label {1}", size, label)
+
+
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
