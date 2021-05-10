@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c8ce7034-1bb7-4d99-9614-902cb2868cd1" name="Default Changelist" comment="implement database integration with tortoise orm and reader for ip public and getway information">
-      <change afterPath="$PROJECT_DIR$/app/logic/device.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/Device_old.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/db.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/device.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/logic/Device.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/logic/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/logic/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Device.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/home_inspector.db" beforeDir="false" afterPath="$PROJECT_DIR$/database/home_inspector.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-    </list>
+    <list default="true" id="c8ce7034-1bb7-4d99-9614-902cb2868cd1" name="Default Changelist" comment="Implement database integration whit sqlalchemy orm" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -82,7 +69,7 @@
       <workItem from="1619993927594" duration="6524000" />
       <workItem from="1620058001132" duration="1198000" />
       <workItem from="1620073269623" duration="12784000" />
-      <workItem from="1620655794113" duration="3633000" />
+      <workItem from="1620655794113" duration="4319000" />
     </task>
     <task id="LOCAL-00001" summary="pycharm">
       <created>1619533610788</created>
@@ -126,7 +113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620016876617</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Implement database integration whit sqlalchemy orm">
+      <created>1620659509411</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1620659509411</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,7 +142,8 @@
     <MESSAGE value="pycharm" />
     <MESSAGE value="implement download speed test method" />
     <MESSAGE value="implement database integration with tortoise orm and reader for ip public and getway information" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement database integration with tortoise orm and reader for ip public and getway information" />
+    <MESSAGE value="Implement database integration whit sqlalchemy orm" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement database integration whit sqlalchemy orm" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -163,10 +158,15 @@
           <line>23</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/logic/device.py</url>
+          <line>64</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/home_inspector_reader$main.coverage" NAME="main Coverage Results" MODIFIED="1620658914456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/home_inspector_reader$main.coverage" NAME="main Coverage Results" MODIFIED="1620659431878" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
