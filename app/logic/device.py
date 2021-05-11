@@ -1,7 +1,7 @@
+import app.models.db as db
 import socket
 import struct
 import requests
-import app.models.db as db
 from app.models import Device
 import string
 import random
@@ -69,3 +69,6 @@ class DeviceLogic:
         if not query:
             db.session.add(device)
             db.session.commit()
+            return device
+
+        return query
