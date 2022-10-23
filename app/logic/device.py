@@ -1,5 +1,5 @@
 import socket
-import struct
+import netifaces
 import requests
 import app.models.db as db
 from app.models import Device
@@ -14,23 +14,32 @@ class DeviceLogic:
     def get_device_information(cls):
         device = Device()
         device.public_ip = cls.get_public_ip()
-        device.private_ip = cls.get_default_gateway_linux()
+        device.private_ip = cls.get_private_ip()
+        device.default_gateway = cls.get_default_gateway()
         device.mac = cls.get_mac_by_ip(device.private_ip)
         device.name = cls.get_random_name()
         cls.get_geo_data(device)
         return device
 
     @classmethod
-    def get_default_gateway_linux(cls):
-        """Read the default gateway directly from /proc."""
-        with open("/proc/net/route") as fh:
-            for line in fh:
-                fields = line.strip().split()
-                if fields[1] != '00000000' or not int(fields[3], 16) & 2:
-                    # If not default route or not RTF_GATEWAY, skip it
-                    continue
+    def get_default_gateway(cls):
+        gateways = netifaces.gateways()
+        default_gateway = gateways['default'][netifaces.AF_INET][0]
+        return default_gateway
 
-                return socket.inet_ntoa(struct.pack("<L", int(fields[2], 16)))
+    @classmethod
+    def get_private_ip(cls):
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.settimeout(0)
+        try:
+            # doesn't even have to be reachable
+            s.connect(('10.254.254.254', 1))
+            IP = s.getsockname()[0]
+        except Exception:
+            IP = '127.0.0.1'
+        finally:
+            s.close()
+        return IP
 
     @classmethod
     def get_public_ip(cls):
@@ -69,3 +78,5 @@ class DeviceLogic:
         if not query:
             db.session.add(device)
             db.session.commit()
+
+        return query

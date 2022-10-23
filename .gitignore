@@ -122,3 +122,19 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+.idea/home_inspector_reader.iml
+
+.idea/misc.xml
+
+.idea/workspace.xml
+
+database/home_inspector.db
+
+database/home_inspector.db-shm
+
+database/home_inspector.db-wal
+
+*.db-shm
+
+*.db-wal
