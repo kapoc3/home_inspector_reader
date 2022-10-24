@@ -2,7 +2,6 @@ import app.models.db as db
 import datetime
 from sqlalchemy import (Column, Integer, String, Float, DATE, TIME, DATETIME, BOOLEAN, ForeignKey)
 from sqlalchemy.orm import relationship
-from .device import Device
 
 
 class Profile(db.Base):

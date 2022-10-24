@@ -1,13 +1,13 @@
-import speedtest_cli
-
 import app.models.db as db
 import speedtest
 import datetime
 import socket
-from app.models import Device, Profile
+import urllib.request
+import ssl
+from app.models import Device, Profile, OfflineProfile
 from datetime import date, datetime
 from app.utils import Converter, Formatter
-import ssl
+
 
 
 class ProfileLogic:
@@ -56,17 +56,11 @@ class ProfileLogic:
             print.error('error checking ping: ' + str(e))
             return 0
 
-    def check_internet_connection(self):
+    def check_internet_connection(self, host='http://google.com'):
         try:
-            IPaddress = socket.gethostbyname(socket.gethostname())
-            if IPaddress == "127.0.0.1":
-                print("No internet, your localhost is " + IPaddress)
-                return False
-            else:
-                print("Connected, with the IP address: " + IPaddress)
-                return True
-        except Exception as e:
-            print.error('error checking internet connection: ' + str(e))
+            urllib.request.urlopen(host)
+            return True
+        except:
             return False
 
     def start_service_measure(self, device: Device):
@@ -82,6 +76,10 @@ class ProfileLogic:
             profile.read_time = datetime.now().time()
             db.session.add(profile)
             db.session.commit()
+            db.session.close_all()
             flag = False
         else:
-            print("implementar el guardado de los datos offline")
+            offline_profile = OfflineProfile()
+            offline_profile.offline_datetime = datetime.now()
+            offline_profile.device = device
+

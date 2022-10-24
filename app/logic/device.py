@@ -5,20 +5,24 @@ import app.models.db as db
 from app.models import Device
 import string
 import random
+import urllib.request
 from ip2geotools.databases.noncommercial import DbIpCity
 from getmac import get_mac_address
-
 
 class DeviceLogic:
     @classmethod
     def get_device_information(cls):
         device = Device()
-        device.public_ip = cls.get_public_ip()
         device.private_ip = cls.get_private_ip()
         device.default_gateway = cls.get_default_gateway()
         device.mac = cls.get_mac_by_ip(device.private_ip)
         device.name = cls.get_random_name()
-        cls.get_geo_data(device)
+
+        flag = cls.check_internet_connection()
+        if flag:
+            device.public_ip = cls.get_public_ip()
+            cls.get_geo_data(device)
+
         return device
 
     @classmethod
@@ -71,12 +75,34 @@ class DeviceLogic:
 
     @classmethod
     def load_or_save_device(cls):
-        device = DeviceLogic.get_device_information()
-        ##TODO check if device exist in remote repository and initialice data from remotye source
+        try:
+            device = DeviceLogic.get_device_information()
+            ##TODO check if device exist in remote repository and initialice data from remotye source
 
-        query = db.session.query(Device).filter(Device.mac == device.mac).one_or_none()
-        if not query:
-            db.session.add(device)
+            query = db.session.query(Device).filter(Device.mac == device.mac).one_or_none()
+            if not query:
+                db.session.add(device)
+            else:
+                query.name = device.name
+                query.public_ip = device.public_ip
+                query.private_ip = device.private_ip
+                query.default_gateway = device.default_gateway
+                query.mac = device.mac
+                query.city = device.city
+                query.country = device.country
+                query.latitude = device.latitude
+                query.longitude = device.longitude
+                query.region = device.region
+
             db.session.commit()
+            db.session.close_all()
+            return query
+        except Exception as e:
+            print.error('error on load_or_save_device: ' + str(e))
 
-        return query
+    def check_internet_connection(host='http://google.com'):
+        try:
+            urllib.request.urlopen(host)
+            return True
+        except Exception as e:
+            print.error('error executong job: ' + str(e))

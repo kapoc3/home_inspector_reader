@@ -14,6 +14,8 @@ def job():
         print.error('error executong job: ' + str(e))
 
 if __name__ == '__main__':
+
+    #job()
     schedule.every(1).minutes.do(job)
 
     while True:
