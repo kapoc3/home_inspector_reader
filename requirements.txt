@@ -14,7 +14,7 @@ charset-normalizer==2.1.0
 click==7.1.2
 colorama==0.4.4
 commonmark==0.9.1
-cryptography==3.4.7
+cryptography==2.8
 cssselect==1.1.0
 decorator==5.0.7
 dicttoxml==1.7.4
@@ -51,7 +51,6 @@ pycodestyle==2.7.0
 pycparser==2.20
 Pygments==2.9.0
 pylint==2.8.2
-pyOpenSSL==22.0.0
 pyparsing==2.4.7
 pypika-tortoise==0.1.0
 pyquery==1.4.3

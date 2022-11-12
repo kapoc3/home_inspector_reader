@@ -15,13 +15,13 @@ def job():
 
 if __name__ == '__main__':
 
-    #job()
-    schedule.every(1).minutes.do(job)
+    job()
+    schedule.every(5).minutes.do(job)
 
-    while True:
-        try:
-            schedule.run_pending()
-            time.sleep(1)
-        except Exception as e:
-            print.error('error checking upload speed: ' + str(e))
+   # while True:
+   #     try:
+   #         schedule.run_pending()
+   #         time.sleep(1)
+   #     except Exception as e:
+   #         print.error('error checking upload speed: ' + str(e))
 
