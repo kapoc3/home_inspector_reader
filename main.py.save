@@ -10,14 +10,14 @@ def job():
         device = DeviceLogic.load_or_save_device()
         profile_logic = ProfileLogic()
         profile_logic.start_service_measure(device)
-        print("I'm done...")
-    except Exception as e:
+    
+	except Exception as e:
         print.error('error executong job: ' + str(e))
 
 if __name__ == '__main__':
 
     job()
-#    schedule.every(5).minutes.do(job)
+   #chedule.every(5).minutes.do(job)
 
    # while True:
    #     try:
